@@ -1,5 +1,5 @@
 {
-  "name": "react-native-store-version",
+  "name": "react-native-store-version-sqvr",
   "version": "1.5.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:watanabeyu/react-native-store-version.git"
+    "url": "git@github.com:KirillTarasenko/react-native-store-version-sqvr.git"
   },
   "keywords": [
     "react-native",
@@ -21,9 +21,9 @@
   ],
   "author": "Yu Watanabe <fight.ippatu5648@gmail.com> (https://github.com/watanabeyu)",
   "bugs": {
-    "url": "https://github.com/watanabeyu/react-native-store-version/issues"
+    "url": "https://github.com/KirillTarasenko/react-native-store-version-sqvr/issues"
   },
-  "homepage": "https://github.com/watanabeyu/react-native-store-version",
+  "homepage": "https://github.com/KirillTarasenko/react-native-store-version-sqvr",
   "dependencies": {
     "compare-versions": "^4.1.3"
   },

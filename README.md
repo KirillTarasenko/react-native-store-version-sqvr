@@ -1,4 +1,4 @@
-# react-native-store-version
+# react-native-store-version-sqvr
 
 This module check an app's version on google playstore or ios app store.  
 By writing code successfully, you can make a forced update.
@@ -9,10 +9,14 @@ https://github.com/sponsors/watanabeyu
 ## Installation
 
 ```bash
-$ npm install --save react-native-store-version
+$ yarn add KirillTarasenko/react-native-store-version-sqvr
 ```
 
 ## CHANGELOG
+
+### v1.5.0
+
+- Add basic url for fix limits RU
 
 ### v1.4.0
 
