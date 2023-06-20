@@ -1,14 +1,8 @@
-export const getIOSVersion = async (storeURL = '', country = 'jp') => {
-  const appID = storeURL.match(/.+id([0-9]+)\??/);
 
-  if (!appID) {
-    throw new Error('iosStoreURL is invalid.');
-  }
+export const getIOSVersion = async (storeURL = "") => {
 
   const response = await fetch(
-    `https://itunes.apple.com/lookup?id=${
-      appID[1]
-    }&country=${country}&${new Date().getTime()}`,
+    storeURL,
     {
       headers: {
         'cache-control': 'no-cache',
@@ -19,7 +13,7 @@ export const getIOSVersion = async (storeURL = '', country = 'jp') => {
     .then((r) => JSON.parse(r));
 
   if (!response || !response.results || response.results.length === 0) {
-    throw new Error(`appID(${appID[1]}) is not released.`);
+    throw new Error(`appID is not released.`);
   }
 
   return response.results[0].version as string;

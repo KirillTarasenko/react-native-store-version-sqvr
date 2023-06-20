@@ -1,11 +1,5 @@
-export const getAndroidVersion = async (storeURL = '') => {
-  if (
-    !storeURL.match(
-      /^https?:\/\/play\.google\.com\/store\/apps\/details\?id=[0-9a-zA-Z.]+/
-    )
-  ) {
-    throw new Error('androidStoreURL is invalid.');
-  }
+
+export const getAndroidVersion = async (storeURL = "") => {
 
   const response = await fetch(storeURL).then((r) => {
     if (r.status === 200) {
