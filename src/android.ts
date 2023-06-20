@@ -9,7 +9,12 @@ export const getAndroidVersion = async (storeURL = "") => {
     throw new Error('androidStoreURL is invalid.');
   });
 
-  const matches = response.match(/\[\[\[['"]((\d+\.)+\d+)['"]\]\],/);
+  let matches;
+  if (storeURL?.startsWith('https://apps.rustore.ru/')) {
+     matches = [,response.match(/"versionName":"[0-9.]+"/gm)?.[0].match(/[0-9.]+/gm)?.[0]];
+  } else {
+     matches = response.match(/\[\[\[['"]((\d+\.)+\d+)['"]\]\],/);
+  }
 
   if (!matches) {
     throw new Error("can't get android app version.");
