@@ -18,6 +18,10 @@ type CheckVersionResponse = {
   detail: 'remote > local' | 'remote < local' | 'remote === local';
 };
 
+export const DEFAULT_IOS_URL = `https://sqvr.ru/apple_store`;
+export const DEFAULT_ANDROID_URL = `https://sqvr.ru/google_store`;
+
+
 export const compareVersion = (
   local: string,
   remote: string
@@ -41,11 +45,11 @@ const checkVersion = async (
 
   /* check store url */
   if (Platform.OS === 'ios' && !params.iosStoreURL) {
-    throw new Error('iosStoreURL is not set.');
+    console.warn("iosStoreURL is not set. Will be using " + DEFAULT_IOS_URL);
   }
 
   if (Platform.OS === 'android' && !params.androidStoreURL) {
-    throw new Error('androidStoreURL is not set.');
+    console.warn("androidStoreURL is not set. Will be using "+ DEFAULT_ANDROID_URL);
   }
 
   /* get version */
@@ -54,8 +58,8 @@ const checkVersion = async (
   try {
     remoteVersion =
       Platform.OS === 'ios'
-        ? await getIOSVersion(params.iosStoreURL, params.country || 'jp')
-        : await getAndroidVersion(params.androidStoreURL);
+        ? await getIOSVersion(params.iosStoreURL || DEFAULT_IOS_URL)
+        : await getAndroidVersion(params.androidStoreURL || DEFAULT_ANDROID_URL);
   } catch (e) {
     if (e instanceof Error) {
       throw new Error(e.message);
@@ -64,6 +68,8 @@ const checkVersion = async (
     throw new Error(`can't get ${Platform.OS} version`);
   }
 
+  console.log("Got app version: ", remoteVersion);
+  
   const result = compareVersion(params.version, remoteVersion);
   let detail: CheckVersionResponse['detail'];
   switch (result) {
